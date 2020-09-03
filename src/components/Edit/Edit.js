@@ -81,7 +81,7 @@ const Edit = props => {
                     type="text"
                     name="title"
                     className="field"
-                    value={page.title}
+                    value={page.title ||''}
                     onChange={pageChanged}
                 />
                 <p>Content</p>
