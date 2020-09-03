@@ -61,7 +61,6 @@ const Edit = props => {
                     value={pageName}
                     onChange={selectPage}
                 >
-                    {/*<option defaultChecked={true}>Choose page</option>*/}
                     {options}
                 </select>
                 <p>Title</p>
