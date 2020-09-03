@@ -8,21 +8,13 @@ const Edit = props => {
         title: '',
         content: '',
     });
-    const [pageName, setPageName] = useState('');
+    const [pageName, setPageName] = useState('home');
 
     useEffect(() => {
         const fetchData = async () => {
-            if (pageName !== 'Choose page') {
-                const response = await axiosOrders.get(pageName + '.json');
-                const newPage = response.data;
-                setPage(newPage);
-            } else {
-                const noChange = {
-                    title: '',
-                    content: '',
-                };
-                setPage(noChange)
-            }
+            const response = await axiosOrders.get(pageName + '.json');
+            const newPage = response.data;
+            setPage(newPage);
         }
         fetchData().catch(console.error);
     }, [pageName]);
@@ -44,18 +36,14 @@ const Edit = props => {
     const saveChanges = async (event) => {
         event.preventDefault()
         const pageCopy = {...page};
-        try {
-            if (page.title !== '' && page.content !== '') {
-                const url = pageName + '.json';
-                await axiosOrders.put(url, pageCopy);
-                props.history.push({
-                    pathname: '/pages/' + pageName
-                });
-            } else {
-                alert('Fill in all fields');
-            }
-        } finally {
-            console.log('success');
+        if (page.title !== '' && page.content !== '') {
+            const url = pageName + '.json';
+            await axiosOrders.put(url, pageCopy);
+            props.history.push({
+                pathname: '/pages/' + pageName
+            });
+        } else {
+            alert('Fill in all fields');
         }
     };
 
@@ -73,7 +61,7 @@ const Edit = props => {
                     value={pageName}
                     onChange={selectPage}
                 >
-                    <option defaultChecked={true}>Choose page</option>
+                    {/*<option defaultChecked={true}>Choose page</option>*/}
                     {options}
                 </select>
                 <p>Title</p>
@@ -81,7 +69,7 @@ const Edit = props => {
                     type="text"
                     name="title"
                     className="field"
-                    value={page.title ||''}
+                    value={page.title}
                     onChange={pageChanged}
                 />
                 <p>Content</p>
