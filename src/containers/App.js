@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect, Route, Switch} from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import Content from "./Content/Content";
-import Edit from "../components/Edit/Edit";
+import Edit from "./Edit/Edit";
 import './App.css';
 
 
