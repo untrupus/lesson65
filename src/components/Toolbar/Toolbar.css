@@ -1,0 +1,29 @@
+.Toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-nav li {
+    display: inline-block;
+    padding-right: 20px;
+}
+
+.main-nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0 40px 0;
+    text-transform: uppercase;
+}
+
+.main-nav .navLink {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #000;
+}
+
+.navLink:hover {
+    color: darkgrey;
+}
