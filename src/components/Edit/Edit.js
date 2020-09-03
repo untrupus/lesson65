@@ -41,7 +41,8 @@ const Edit = props => {
         }));
     };
 
-    const saveChanges = async () => {
+    const saveChanges = async (event) => {
+        event.preventDefault()
         const pageCopy = {...page};
         try {
             if (page.title !== '' && page.content !== '') {
@@ -65,34 +66,32 @@ const Edit = props => {
     return (
         <div>
             <h2>Edit page</h2>
-            <select
-                name="page"
-                className="selectField"
-                value={pageName}
-                onChange={selectPage}
-            >
-                <option defaultChecked={true}>Choose page</option>
-                {options}
-            </select>
-            <p>Title</p>
-            <input
-                type="text"
-                name="title"
-                className="field"
-                value={page.title}
-                onChange={pageChanged}
-            />
-            <p>Content</p>
-            {/*<ReactQuill theme="snow"*/}
-            {/*            name="content"*/}
-            {/*            value={page.content}*/}
-            {/*            onChange={pageChanged}/>*/}
-            <textarea name="content"
-                      value={page.content}
-                      onChange={pageChanged}
-                      className="textarea"/>
-            <br/>
-            <button type="button" className="btn" onClick={saveChanges}>Save</button>
+            <form onSubmit={saveChanges}>
+                <select
+                    name="page"
+                    className="selectField"
+                    value={pageName}
+                    onChange={selectPage}
+                >
+                    <option defaultChecked={true}>Choose page</option>
+                    {options}
+                </select>
+                <p>Title</p>
+                <input
+                    type="text"
+                    name="title"
+                    className="field"
+                    value={page.title}
+                    onChange={pageChanged}
+                />
+                <p>Content</p>
+                <textarea name="content"
+                          value={page.content}
+                          onChange={pageChanged}
+                          className="textarea"/>
+                <br/>
+                <button type="submit" className="btn">Save</button>
+            </form>
         </div>
     );
 };
